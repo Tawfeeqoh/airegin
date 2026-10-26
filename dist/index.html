@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111412">
+  <meta name="description" content="AIREGIN: a playable six-day social and political crisis in a fictional Nigeria-inspired city.">
+  <title>AIREGIN · Every move has consequences</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/display.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the game</a>
+  <header class="masthead">
+    <a class="brand" href="#main" aria-label="AIREGIN simulator">AIREGIN<span class="brand-slash">/</span><small>EVERY MOVE HAS CONSEQUENCES</small></a>
+    <div class="location"><span class="statusdot"></span>SOGAL <span class="divider">/</span> DISTRICT 04</div>
+    <div class="header-actions"><span class="private-label"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="7" width="8" height="7" rx="1"/><path d="M5 7V5a3 3 0 016 0v2"/></svg>PRIVATE WORLD</span><button id="help-button" class="quiet">Field guide</button><button id="reset-button" class="quiet" aria-label="Start a new world">↺ <span>New world</span></button></div>
+  </header>
+  <main id="main">
+    <section class="page-title"><div><p class="eyebrow">CHAPTER 01 / THE SIX-DAY BLACKOUT</p><h1>SOGAL IS WATCHING.</h1></div><div class="day-block"><span id="day-label">DAY 01 <span>/ 06</span></span><div id="day-progress" class="day-progress" aria-label="Day 1 of 6"></div><small id="phase-label">Six days to the city assembly</small></div></section>
+    <div class="role-bar"><div class="playing-as"><span id="active-avatar" class="mini-avatar"></span><span><small>YOUR PERSPECTIVE</small><strong id="active-role">Choose your role</strong></span><span id="active-person" class="person-name"></span></div><button id="switch-role" class="text-button">Switch perspective <span>↗</span></button></div>
+    <nav id="game-nav" class="game-nav" aria-label="Game views">
+      <button data-view="world" class="selected" aria-pressed="true" aria-controls="view-world"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 7h14M5 17h14"/></svg><span>WORLD</span><small>01</small></button>
+      <button data-view="crew" aria-pressed="false" aria-controls="view-crew"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="7" r="3"/><circle cx="18" cy="8" r="2"/><path d="M3 21v-5a6 6 0 0112 0v5M16 13a4 4 0 015 4v4"/></svg><span>CREW</span><small>02</small></button>
+      <button data-view="influence" aria-pressed="false" aria-controls="view-influence"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-6 9 6H3zm2 3v7m5-7v7m4-7v7m5-7v7M3 21h18"/></svg><span>DISTRICT</span><small>03</small></button>
+      <button data-view="journal" aria-pressed="false" aria-controls="view-journal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h7l2 2 2-2h7v16h-7l-2 1-2-1H3V4zm9 2v15M6 8h3m-3 4h3m6-4h3m-3 4h3"/></svg><span>JOURNAL</span><small>04</small></button>
+    </nav>
+    <section id="indicators" class="indicators" aria-label="World indicators"></section>
+    <div class="play-grid view-panel" id="view-world">
+      <section class="world-panel" aria-labelledby="world-title">
+        <div class="panel-heading"><div><span class="eyebrow">SOGAL / DISTRICT 04</span><h2 id="world-title">THE CITY DOESN’T WAIT.</h2></div><span class="live-pill"><span class="statusdot"></span>SOLO WORLD</span></div>
+        <div class="map-container">
+          <img class="street-art" src="assets/sogal-street.webp" width="392" height="407" alt="Illustrated Nigerian street in SOGAL: yellow danfo buses, market umbrellas, weathered buildings and overhead power lines.">
+          <div class="scene-stamp" id="scene-status"><span class="statusdot amber"></span>BLACKOUT / ACTIVE CRISIS</div>
+          <div class="scene-objective"><span class="eyebrow">CURRENT OBJECTIVE</span><strong id="scene-objective">Restore power. Keep the city together.</strong></div>
+          <div class="map-caption"><span id="map-status"><span class="statusdot amber"></span>GRID UNSTABLE</span><button id="inspect-world" class="scene-link">DISTRICT MAP ↗</button></div>
+        </div>
+        <button id="make-your-move" class="primary-button world-action">Your next move <span>→</span></button><div class="world-footnote"><span>ONE WORLD. FIVE PERSPECTIVES.</span><span>EVERY DECISION CARRIES FORWARD.</span></div>
+      </section>
+      <section class="decision-panel" id="decision-panel" aria-labelledby="decision-title"></section>
+    </div>
+    <section class="actors-section view-panel" id="view-crew" aria-labelledby="actors-title" hidden>
+      <div class="section-heading"><div><span class="eyebrow">CREW / 02</span><h2 id="actors-title">FIVE LIVES. ONE CITY.</h2></div><span class="muted small">Simulated citizens · reactions follow your decisions</span></div>
+      <div class="crew-banner"><img src="assets/crew.webp" width="365" height="191" alt="Illustrated young Nigerian characters standing together on a city street."><div><span class="eyebrow">THE MAINLAND COLLECTIVE</span><h3>PEOPLE SHAPE SOGAL.</h3><p>Your choices reach classrooms, market stalls, the station and the newsroom. Support is earned, and it can be lost.</p><div class="crew-banner-note"><span class="statusdot"></span>5 PERSPECTIVES / ONE SHARED RECORD</div></div></div>
+      <div id="actors" class="actor-grid"></div>
+      <div class="transmission-heading"><span class="eyebrow">CITY TRANSMISSIONS</span><span class="muted small">Responses to your latest move</span></div><div id="city-transmissions" class="city-transmissions"></div>
+    </section>
+    <section class="influence-section view-panel" id="view-influence" aria-labelledby="influence-title" hidden>
+      <div class="section-heading"><div><span class="eyebrow">DISTRICT CONTROL / 03</span><h2 id="influence-title">WHO HOLDS SOGAL?</h2></div><span class="muted small">Inspect the places that carry your decisions</span></div>
+      <div class="influence-grid">
+        <div class="influence-map" id="influence-map"><img src="assets/district-map.webp" width="353" height="387" alt="Stylised fictional SOGAL district map, with orange and teal ward boundaries beside the lagoon."><button class="map-pin pin-school selected" data-location="school" aria-pressed="true"><span>01</span>ABAY</button><button class="map-pin pin-council" data-location="council" aria-pressed="false"><span>02</span>AJEKI</button><button class="map-pin pin-market" data-location="market" aria-pressed="false"><span>03</span>OKOKAM</button><button class="map-pin pin-station" data-location="station" aria-pressed="false"><span>04</span>UDOJO</button><span class="map-disclaimer">FICTIONAL DISTRICT SCHEMATIC / NOT TO SCALE</span></div>
+        <div class="district-inspector"><div class="district-tabs" role="group" aria-label="Inspect a location"><button data-district="school" class="selected" aria-pressed="true">ABAY <small>School</small></button><button data-district="council" aria-pressed="false">AJEKI <small>Council</small></button><button data-district="market" aria-pressed="false">OKOKAM <small>Market</small></button><button data-district="station" aria-pressed="false">UDOJO <small>Station</small></button></div><div id="district-detail" class="district-detail"></div><img id="district-art" class="district-art" src="assets/council.webp" width="351" height="220" alt="SOGAL council building, with Nigerian flags and palm trees."><div id="district-pressure" class="district-pressure"></div><button id="return-to-world" class="primary-button">Return to your next move <span>→</span></button></div>
+      </div>
+    </section>
+    <section class="ledger-section view-panel" id="view-journal" aria-labelledby="ledger-title" hidden>
+      <div class="section-heading"><div><span class="eyebrow">JOURNAL / 04</span><h2 id="ledger-title">THE CITY REMEMBERS.</h2></div><button id="ledger-toggle" class="text-button" aria-expanded="false">Show decision record ↓</button></div><div id="ledger-summary" class="ledger-summary"></div><div id="ledger" hidden></div>
+    </section>
+    <footer><span><strong>AIREGIN</strong> / EVERY MOVE HAS CONSEQUENCES</span><span id="save-status">Solo prototype · simulated citizens · saved in this browser</span><span class="footer-private"><span class="statusdot"></span>PRIVATE SESSION</span></footer>
+  </main>
+  <dialog id="role-dialog" class="role-dialog" aria-labelledby="role-dialog-title"><div class="character-layout"><div class="character-art-panel"><span class="eyebrow">SOLO WORLD / 01</span><span class="entry-wordmark">AIREGIN</span><p>Every move has<br>consequences.</p><img src="assets/character.webp" width="245" height="505" alt="AIREGIN character artwork: a young Nigerian woman with short natural hair, a rust-coloured T-shirt and cargo trousers."><span class="character-art-caption">SOGAL / THE CITY REMEMBERS</span></div><div class="dialog-inner"><div class="dialog-top"><span class="eyebrow">CREATE CHARACTER / 01</span><button id="close-role-dialog" class="close-button" aria-label="Close role selector">×</button></div><h2 id="role-dialog-title">WHO WILL<br>YOU BECOME?</h2><p id="role-dialog-intro">The power is out. The assembly is in six days. Step into a life, make a call, and watch the city answer.</p><span class="eyebrow role-label" id="role-label">STARTING ROLE</span><div id="role-options" class="role-options"></div><div class="role-detail" id="role-detail"></div><div class="dialog-bottom"><span>5 roles / 6 decisions / about 5 minutes<br><small>Solo play with simulated actors. Switch roles as you play.</small></span><button id="enter-world" class="primary-button">Enter AIREGIN <span>→</span></button></div></div></div></dialog>
+  <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title"><div class="dialog-inner"><div class="dialog-top"><span class="eyebrow">FIELD GUIDE</span><button id="close-help" class="close-button" aria-label="Close instructions">×</button></div><h2 id="help-title">THE CITY ANSWERS BACK.</h2><ol class="guide"><li><strong>Choose a perspective.</strong><span>Five roles share one world. Switch at any time; earlier decisions remain.</span></li><li><strong>Make one decision per day.</strong><span>Read the trade-off. “Show effects” reveals direct and delayed changes. A decision commits the day.</span></li><li><strong>Read the ripple.</strong><span>Other actors respond. Blackouts, unsafe streets, corruption and alliances also affect the city.</span></li><li><strong>Advance and face the assembly.</strong><span>Tomorrow’s costs arrive before the next decision. After day six, the assembly assesses the whole record.</span></li></ol><p class="model-note">A fictional, rule-based prototype. Indicators use a 0–100 scale. Power is simulated grid coverage; livelihoods reflect trading conditions. The public reserve is measured in millions of naira. Place names are reversed; people’s names are not.</p><p class="model-note">Assembly score: trust 30%, power 25%, livelihoods 20%, safety 15%, learning 10%. 65+ earns a mandate; 45–64 requires oversight; below 45 loses support. Your world saves in this browser only.</p><button id="start-playing" class="primary-button">Got it. Let’s play <span>→</span></button></div></dialog>
+  <dialog id="reset-dialog" class="help-dialog" aria-labelledby="reset-title"><div class="dialog-inner"><span class="eyebrow">START OVER</span><h2 id="reset-title">A FRESH SIX DAYS?</h2><p>This replaces your current world and its saved decision record in this browser.</p><div class="reset-actions"><button id="cancel-reset" class="quiet">Keep this world</button><button id="confirm-reset" class="primary-button">Start a new world <span>→</span></button></div></div></dialog>
+  <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
